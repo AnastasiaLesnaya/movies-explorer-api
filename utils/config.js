@@ -1,4 +1,4 @@
-const PORT = 3001;
+const PORT = 3000;
 
 let { JWT_SECRET, MONGODB } = process.env;
 if (process.env.NODE_ENV !== 'production') {
