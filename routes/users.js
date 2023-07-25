@@ -7,9 +7,8 @@ const {
 
 // Валидация
 const {
-  validateUserUpdate
+  validateUserUpdate,
 } = require('../middlewares/validation');
-
 
 router.get('/me', getUserInfo);
 router.patch('/me', validateUserUpdate, updateUserInfo);

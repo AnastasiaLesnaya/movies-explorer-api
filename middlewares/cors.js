@@ -1,6 +1,9 @@
 const allowedCors = [
-  
-
+  'https://api.les.movies.nomoreparties.sbs',
+  'https://api.les.movies.nomoreparties.sbs',
+  'https://localhost:3000',
+  'http://api.les.movies.nomoreparties.sbs',
+  'http://api.les.movies.nomoreparties.sbs',
   'http://localhost:3000',
 ];
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';

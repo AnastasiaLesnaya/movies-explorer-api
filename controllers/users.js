@@ -10,7 +10,7 @@ const ValidationError = require('../errors/Validation');
 // 401
 const UnauthorisedError = require('../errors/Unauthorized');
 // 404
- const NotFoundError = require('../errors/NotFound');
+const NotFoundError = require('../errors/NotFound');
 // 409
 const ConflictError = require('../errors/ConflictingRequest');
 
@@ -77,43 +77,43 @@ const updateUserInfo = (req, res, next) => {
 const authorizeUser = (req, res, next) => {
   const { email, password } = req.body;
   User.findOne({ email }).select('+password')
-  .then((user) => {
-    if (!user) {
-      throw new UnauthorisedError(UNAUTHORIZED_USER_MESSAGE);
-    }
-    bcrypt.compare(password, user.password)
-      .then((matched) => {
-        if (!matched) {
-          throw new UnauthorisedError(UNAUTHORIZED_USER_MESSAGE);
-        }
-        const token = jwt.sign(
-          { _id: user._id },
-          JWT_SECRET,
-          { expiresIn: '7d' },
-        );
-        return res.send({ token });
-      })
-      .catch(next);
-  })
-  .catch(next);
+    .then((user) => {
+      if (!user) {
+        throw new UnauthorisedError(UNAUTHORIZED_USER_MESSAGE);
+      }
+      bcrypt.compare(password, user.password)
+        .then((matched) => {
+          if (!matched) {
+            throw new UnauthorisedError(UNAUTHORIZED_USER_MESSAGE);
+          }
+          const token = jwt.sign(
+            { _id: user._id },
+            JWT_SECRET,
+            { expiresIn: '7d' },
+          );
+          return res.send({ token });
+        })
+        .catch(next);
+    })
+    .catch(next);
 };
 
 // получение профиля
 const getUserInfo = (req, res, next) => {
   User.findById(req.userId)
-  .then((user) => {
-    if (user) {
-      return res.send(user);
-    }
-    throw new NotFoundError(NOT_FOUND_USER_MESSAGE);
-  })
-  .catch((err) => {
-    if (err.name === 'CastError') {
-      next(new ValidationError(BAD_REQUEST_USER_MESSAGE));
-      return;
-    }
-    next(err);
-  });
+    .then((user) => {
+      if (user) {
+        return res.send(user);
+      }
+      throw new NotFoundError(NOT_FOUND_USER_MESSAGE);
+    })
+    .catch((err) => {
+      if (err.name === 'CastError') {
+        next(new ValidationError(BAD_REQUEST_USER_MESSAGE));
+        return;
+      }
+      next(err);
+    });
 };
 
 module.exports = {

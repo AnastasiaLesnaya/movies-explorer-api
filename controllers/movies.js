@@ -5,7 +5,7 @@ const ValidationError = require('../errors/Validation');
 // 403
 const ForbiddenError = require('../errors/Forbidden');
 // 404
- const NotFoundError = require('../errors/NotFound');
+const NotFoundError = require('../errors/NotFound');
 
 const {
   NOT_FOUND_MOVIE_MESSAGE,
@@ -13,7 +13,6 @@ const {
   SUCCESS_DELETED_MOVIE_MESSAGE,
   FORBIDDEN_MESSAGE,
 } = require('../utils/constants');
-
 
 // Получаем карточки фильмов
 const getUserMovies = (req, res, next) => {

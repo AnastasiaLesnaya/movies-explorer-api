@@ -1,1 +1,3 @@
-Здесь будет мой дипломный проект.
+Backend дипломного проекта.
+
+http://api.les.movies.nomoreparties.sbs/

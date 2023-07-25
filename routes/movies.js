@@ -2,12 +2,12 @@ const router = require('express').Router();
 
 // Переменные действий с карточками фильмов
 const {
-  getUserMovies, addMovie, deleteMovieById 
+  getUserMovies, addMovie, deleteMovieById,
 } = require('../controllers/movies');
 
 // Валидация
 const {
-  validateAddMovie, validateId
+  validateAddMovie, validateId,
 } = require('../middlewares/validation');
 
 router.get('/', getUserMovies);
