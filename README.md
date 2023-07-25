@@ -1,3 +1,3 @@
 Backend дипломного проекта.
 
-http://api.les.movies.nomoreparties.sbs/
+https://api.les.movies.nomoreparties.sbs/
