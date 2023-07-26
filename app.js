@@ -3,7 +3,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
-const cors = require('cors');
 // Защита сервера
 const helmet = require('helmet');
 const { limiter } = require('./middlewares/limiter');
@@ -14,6 +13,7 @@ const { PORT, MONGODB } = require('./utils/config');
 const allRoutes = require('./routes/index');
 
 const errorMiddleware = require('./middlewares/error');
+const { cors } = require('./middlewares/cors');
 
 const app = express();
 
@@ -22,7 +22,7 @@ mongoose.connect(MONGODB, {
   useNewUrlParser: true,
 });
 
-app.use(cors());
+app.use(cors);
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(requestLogger);
