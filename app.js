@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 // Защита сервера
 const helmet = require('helmet');
@@ -22,10 +23,12 @@ mongoose.connect(MONGODB, {
   useNewUrlParser: true,
 });
 
-app.use(cors);
-app.use(helmet());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(requestLogger);
+app.use(helmet());
+app.use(cors);
 app.use(limiter);
 
 app.use('/', allRoutes);
