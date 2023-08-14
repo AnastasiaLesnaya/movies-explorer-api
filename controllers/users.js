@@ -91,7 +91,12 @@ const authorizeUser = (req, res, next) => {
             JWT_SECRET,
             { expiresIn: '7d' },
           );
-          return res.send({ token });
+          return res.send.cookie('jwt', token, {
+            maxAge: 3600000 * 24 * 7,
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None',
+          }).end();
         })
         .catch(next);
     })
