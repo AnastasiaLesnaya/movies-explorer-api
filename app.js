@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
+
+const cors = require('cors');
 // Защита сервера
 const helmet = require('helmet');
 const { limiter } = require('./middlewares/limiter');
@@ -14,7 +16,6 @@ const { PORT, MONGODB } = require('./utils/config');
 const allRoutes = require('./routes/index');
 
 const errorMiddleware = require('./middlewares/error');
-const { cors } = require('./middlewares/cors');
 
 const app = express();
 
@@ -23,12 +24,19 @@ mongoose.connect(MONGODB, {
   useNewUrlParser: true,
 });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
+const options = {
+  origin: [
+    'https://localhost:3000/',
+    'https://les.movies.nomoreparties.sbs/',
+  ],
+  credentials: true,
+};
+
+app.use('*', cors(options));
+app.use(express.json());
 app.use(requestLogger);
 app.use(helmet());
-app.use(cors);
+
 app.use(limiter);
 
 app.use('/', allRoutes);
