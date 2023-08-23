@@ -1,6 +1,8 @@
 const allowedCors = [
   'https://les.movies.nomoreparties.sbs',
   'http://les.movies.nomoreparties.sbs',
+  'https://les.movies.nomoreparties.sbs/',
+  'http://les.movies.nomoreparties.sbs/',
   'https://localhost:3000',
   'http://localhost:3000',
 ];
