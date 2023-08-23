@@ -11,7 +11,6 @@ module.exports = (req, res, next) => {
 
   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
   // Сохраняем тип запроса (HTTP-метод) в соответствующую переменную
-  const { method } = req;
   const requestHeaders = req.headers['access-control-request-headers'];
   // проверяем, что источник запроса есть среди разрешённых
   if (allowedCors.includes(origin)) {
@@ -20,7 +19,7 @@ module.exports = (req, res, next) => {
     res.header('Access-Control-Allow-Credentials', true);
   }
   // предварительный запрос
-  if (method === 'OPTIONS') {
+  if (req.method === 'OPTIONS') {
     // разрешаем кросс-доменные запросы любых типов (по умолчанию)
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
     res.header('Access-Control-Allow-Headers', requestHeaders);
