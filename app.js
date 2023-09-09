@@ -13,7 +13,7 @@ const { limiter } = require('./middlewares/limiter');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { PORT, MONGODB } = require('./utils/config');
 // Роуты
-const allRoutes = require('./routes');
+const allRoutes = require('./routes/index');
 
 const errorMiddleware = require('./middlewares/error');
 
@@ -45,7 +45,7 @@ app.use(helmet());
 
 app.use(limiter);
 
-app.use('/', allRoutes);
+app.use(allRoutes);
 
 app.use(errorLogger);
 app.use(errors());
