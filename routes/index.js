@@ -1,8 +1,8 @@
-const mainRouter = require('express').Router();
+const router = require('express').Router();
 
 const { registerUser, authorizeUser } = require('../controllers/users');
 const { validateUserReg, validateUserAuth } = require('../middlewares/validation');
-const { auth } = require('../middlewares/auth');
+const auth = require('../middlewares/auth');
 
 const { pageNotFound } = require('../utils/not_found');
 
@@ -11,16 +11,16 @@ const routerUsers = require('./users');
 const routerMovies = require('./movies');
 
 // Регистрация, авторизация (+валидация)
-mainRouter.post('/signup', validateUserReg, registerUser);
-mainRouter.post('/signin', validateUserAuth, authorizeUser);
-mainRouter.use('/', auth);
+router.post('/signup', validateUserReg, registerUser);
+router.post('/signin', validateUserAuth, authorizeUser);
 // Страницы для авторизованных пользователей
-mainRouter.use('/users', auth, routerUsers);
-mainRouter.use('/movies', auth, routerMovies);
-mainRouter.post('/signout', (req, res) => {
+router.use('/', auth);
+router.use('/users', routerUsers);
+router.use('/movies', routerMovies);
+router.post('/signout', (req, res) => {
   res.clearCookie('jwt', { secure: true, sameSite: 'None' }).end();
 });
 // Несуществующие страницы
-mainRouter.use('*', auth, pageNotFound);
+router.use('*', pageNotFound);
 
-module.exports = mainRouter;
+module.exports = router;
