@@ -29,8 +29,8 @@ const options = {
     'https://localhost:3000/',
     'https://les.movies.nomoreparties.sbs/',
   ],
-  allowedHeaders: ['Content-Туре', 'origin', 'Accept', 'Set-Cookie'],
-  methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
+  // allowedHeaders: ['Content-Туре', 'origin', 'Accept', 'Set-Cookie'],
+  // methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
   preflightContinue: false,
   credentials: true,
 };
