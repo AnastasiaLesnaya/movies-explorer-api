@@ -13,9 +13,13 @@ const routerMovies = require('./movies');
 // Регистрация, авторизация (+валидация)
 router.post('/signup', validateUserReg, registerUser);
 router.post('/signin', validateUserAuth, authorizeUser);
+router.use('/', auth);
 // Страницы для авторизованных пользователей
 router.use('/users', auth, routerUsers);
 router.use('/movies', auth, routerMovies);
+router.post('/signout', (req, res) => {
+  res.clearCookie('jwt', { secure: true, sameSite: 'None' }).end();
+});
 // Несуществующие страницы
 router.use('*', auth, pageNotFound);
 
