@@ -1,4 +1,4 @@
-const router = require('express').Router();
+const routerUsers = require('express').Router();
 
 // Переменные действий с пользователем
 const {
@@ -10,7 +10,7 @@ const {
   validateUserUpdate,
 } = require('../middlewares/validation');
 
-router.get('/me', getUserInfo);
-router.patch('/me', validateUserUpdate, updateUserInfo);
+routerUsers.get('/me', getUserInfo);
+routerUsers.patch('/me', validateUserUpdate, updateUserInfo);
 
-module.exports = router;
+module.exports = routerUsers;
