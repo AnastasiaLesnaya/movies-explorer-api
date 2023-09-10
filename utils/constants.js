@@ -1,3 +1,5 @@
+const OK = 200;
+
 const BAD_REQUEST_CODE = 400;
 const BAD_REQUEST_USER_MESSAGE = 'Переданы некорректные данные пользователя.';
 const BAD_REQUEST_MOVIE_MESSAGE = 'Переданы некорректные данные фильма.';
@@ -27,6 +29,7 @@ const REQUIRE_AUTHORIZATION_MESSAGE = 'Необходимо авторизова
 const REGEX = /^https?:.+$/i;
 
 module.exports = {
+  OK,
   BAD_REQUEST_CODE,
   NOT_FOUND_CODE,
   INTERNAL_SERVER_ERROR_CODE,
