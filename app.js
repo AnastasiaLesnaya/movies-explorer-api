@@ -35,13 +35,13 @@ const options = {
     'https://localhost:3000/',
     'https://les.movies.nomoreparties.sbs/',
   ],
-  allowedHeaders: ['Content-Туре', 'origin', 'Accept', 'Set-Cookie'],
+  allowedHeaders: ['Content-Туре', 'origin', 'Authorization', 'Access-Control-Allow-Origin', 'Access-Control-Allow-Headers', 'Accept', 'Set-Cookie'],
   methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
   preflightContinue: false,
   credentials: true,
 };
 
-app.use(cors(options));
+app.use('*', cors(options));
 
 app.use(limiter);
 
