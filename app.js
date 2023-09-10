@@ -4,13 +4,11 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
-// const cors = require('cors');
+const cors = require('cors');
 
 // Защита сервера
 const helmet = require('helmet');
 const { limiter } = require('./middlewares/limiter');
-
-const corsOption = require('./middlewares/corsOptions');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { PORT, MONGODB } = require('./utils/config');
@@ -47,9 +45,8 @@ app.use(helmet());
 //  credentials: true,
 // };
 
-// app.use('*', cors(options));
 
-app.use(corsOption);
+app.use(cors());
 app.use(limiter);
 
 app.use(mainRouter);
