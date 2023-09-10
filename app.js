@@ -32,8 +32,10 @@ app.use(helmet());
 
 const options = {
   origin: [
-    'https://localhost:3000/',
+    'http://localhost:3000/',
     'https://les.movies.nomoreparties.sbs/',
+    'https://api.les.movies.nomoreparties.sbs/',
+    'https://localhost:3000/',
   ],
   allowedHeaders: ['Content-Туре', 'origin', 'Authorization', 'Access-Control-Allow-Origin', 'Access-Control-Allow-Headers', 'Accept', 'Set-Cookie'],
   methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
