@@ -24,28 +24,28 @@ mongoose.connect(MONGODB, {
   useNewUrlParser: true,
 });
 
-const options = {
-  origin: [
-    'https://localhost:3000/',
-    'https://les.movies.nomoreparties.sbs/',
-  ],
-  // allowedHeaders: ['Content-Туре', 'origin', 'Accept', 'Set-Cookie'],
-  // methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
-  preflightContinue: false,
-  credentials: true,
-};
-
-app.use('*', cors(options));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(requestLogger);
 app.use(helmet());
 
+const options = {
+  origin: [
+    'https://localhost:3000/',
+    'https://les.movies.nomoreparties.sbs/',
+  ],
+  allowedHeaders: ['Content-Туре', 'origin', 'Accept', 'Set-Cookie'],
+  methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
+  preflightContinue: false,
+  credentials: true,
+};
+
+app.use('*', cors(options));
+
 app.use(limiter);
 
-app.use('/', mainRouter);
+app.use(mainRouter);
 
 app.use(errorLogger);
 app.use(errors());
