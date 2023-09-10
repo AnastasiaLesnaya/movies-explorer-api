@@ -41,7 +41,7 @@ const options = {
   credentials: true,
 };
 
-app.use('*', cors(options));
+app.use(cors(options));
 
 app.use(limiter);
 
