@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const jwt = require('jsonwebtoken');
 
 const { registerUser, authorizeUser } = require('../controllers/users');
 const { validateUserReg, validateUserAuth } = require('../middlewares/validation');
@@ -18,7 +19,7 @@ router.use('/', auth);
 router.use('/users', routerUsers);
 router.use('/movies', routerMovies);
 router.post('/signout', (req, res) => {
-  res.clearCookie('jwt', { secure: true, sameSite: 'None' }).end();
+  res.clearCookie(jwt, { secure: true, sameSite: 'None' }).end();
 });
 // Несуществующие страницы
 router.use('*', pageNotFound);
